@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nativemailer.click/sitemap.xml
+Sitemap: https://nativemailer-website.vercel.app/sitemap.xml
