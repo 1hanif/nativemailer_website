@@ -2,16 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Native Mailer — a beautiful, cross-platform desktop app that catches every email your app sends during development. Zero config. Zero cloud." />
-    <title>Native Mailer — Local Email Testing, Beautifully Done</title>
+
+    <!-- Primary -->
+    <title>Native Mailer — Catch Every Email Locally | Local SMTP Testing App</title>
+    <meta name="description" content="Native Mailer is a free, open-source desktop app with a built-in local SMTP server that captures every email your app sends during development. Inspect HTML, headers, and attachments — no cloud, no config." />
+    <meta name="keywords" content="local smtp server, email testing, smtp testing tool, catch emails locally, mailtrap alternative, mailhog alternative, email development, desktop email catcher, laravel email testing" />
+    <meta name="author" content="Hanif" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://nativemailer.click/" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Native Mailer" />
+    <meta property="og:title" content="Native Mailer — Catch Every Email Locally" />
+    <meta property="og:description" content="Free, open-source desktop app with a local SMTP server that captures every email your app sends. Inspect HTML, headers, and attachments — no cloud, no config." />
+    <meta property="og:url" content="https://nativemailer.click/" />
+    <meta property="og:image" content="https://nativemailer.click/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Native Mailer — local SMTP email testing app" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Native Mailer — Catch Every Email Locally" />
+    <meta name="twitter:description" content="Free, open-source desktop app with a local SMTP server that captures every email your app sends during development." />
+    <meta name="twitter:image" content="https://nativemailer.click/og-image.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Native Mailer",
+      "url": "https://nativemailer.click/",
+      "image": "https://nativemailer.click/og-image.png",
+      "description": "A free, open-source desktop application with a built-in local SMTP server that captures every email your application sends during development. Inspect HTML, headers, attachments, and raw source without external services.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS, Windows, Linux",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "softwareVersion": "2.4.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "downloadUrl": "https://github.com/1hanif/nativemailer/releases",
+      "author": {
+        "@type": "Person",
+        "name": "Hanif",
+        "url": "https://github.com/1hanif"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Native Mailer — Catch Every Email Locally</h1>
+      <p>Native Mailer is a free, open-source desktop app with a built-in local SMTP server (localhost:1025) that captures every email your application sends during development. Download it at <a href="https://github.com/1hanif/nativemailer/releases">github.com/1hanif/nativemailer</a>.</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

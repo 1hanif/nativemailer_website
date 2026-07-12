@@ -28,7 +28,8 @@ const STEPS: Step[] = [
 
 export function Steps() {
   return (
-    <section id="how" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="how" aria-label="How it works" className="mx-auto max-w-6xl px-6 py-24">
+      <h2 className="sr-only">How it works</h2>
       <motion.div
         variants={stagger}
         initial="hidden"

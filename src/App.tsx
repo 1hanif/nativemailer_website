@@ -11,12 +11,14 @@ export default function App() {
   return (
     <div className="bg-ink text-white antialiased">
       <Nav />
-      <Hero />
-      <Workflow />
-      <StackBand />
-      <Steps />
-      <Features />
-      <Download />
+      <main>
+        <Hero />
+        <Workflow />
+        <StackBand />
+        <Steps />
+        <Features />
+        <Download />
+      </main>
       <Footer />
     </div>
   )

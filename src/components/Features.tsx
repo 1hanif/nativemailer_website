@@ -30,7 +30,8 @@ function FeatureRow({ icon, title, desc, mock, flip = false }: FeatureRowProps) 
 
 export function Features() {
   return (
-    <section id="features" className="mx-auto max-w-6xl space-y-28 px-6 py-24">
+    <section id="features" aria-label="Features" className="mx-auto max-w-6xl space-y-28 px-6 py-24">
+      <h2 className="sr-only">Features</h2>
       <FeatureRow
         icon="📥"
         title="The Inbox"
