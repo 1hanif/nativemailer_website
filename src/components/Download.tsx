@@ -1,6 +1,9 @@
-import { REPO_URL } from '../data'
+import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
 import { Reveal } from './Reveal'
 import { AppleIcon } from './icons'
+
+const secondary =
+  'flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:text-white'
 
 export function Download() {
   return (
@@ -14,19 +17,31 @@ export function Download() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
-            href={`${REPO_URL}/releases`}
+            href={DOWNLOADS.macArm}
             className="flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-white/10 transition hover:bg-white"
           >
             <AppleIcon /> macOS (Apple Silicon)
           </a>
-          <a
-            href={`${REPO_URL}/releases`}
-            className="flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:text-white"
-          >
-            🖥 Windows & Linux
+          <a href={DOWNLOADS.macIntel} className={secondary}>
+            <AppleIcon /> macOS (Intel)
+          </a>
+          <a href={DOWNLOADS.windows} className={secondary}>
+            🖥 Windows
+          </a>
+          <a href={DOWNLOADS.linuxAppImage} className={secondary}>
+            🐧 Linux (AppImage)
+          </a>
+          <a href={DOWNLOADS.linuxDeb} className={secondary}>
+            🐧 Linux (.deb)
           </a>
         </div>
-        <p className="mt-6 font-mono text-[11px] text-white/30">No registration. No tracking. Pure utility.</p>
+        <p className="mt-6 font-mono text-[11px] text-white/30">
+          v{APP_VERSION} ·{' '}
+          <a href={`${REPO_URL}/releases`} className="underline decoration-white/20 underline-offset-2 transition hover:text-white/60">
+            all releases
+          </a>{' '}
+          · No registration. No tracking. Pure utility.
+        </p>
       </Reveal>
     </section>
   )

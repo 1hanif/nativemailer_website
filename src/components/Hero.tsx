@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { DOWNLOADS } from '../data'
 import { fadeUp, stagger } from '../motion'
 import { BrowserMockup } from './BrowserMockup'
 
@@ -22,16 +23,16 @@ export function Hero() {
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="#download"
+              href={DOWNLOADS.macArm}
               className="group flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-white/10 transition hover:bg-white hover:shadow-xl hover:shadow-white/20"
             >
               Download for macOS
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
-            <a href="#download" className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
+            <a href={DOWNLOADS.windows} className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
               🖥 Windows
             </a>
-            <a href="#download" className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
+            <a href={DOWNLOADS.linuxAppImage} className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
               🐧 Linux
             </a>
           </motion.div>
