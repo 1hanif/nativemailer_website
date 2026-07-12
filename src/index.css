@@ -7,8 +7,8 @@
   --color-panel: #111111;
   --color-panel2: #161616;
   --color-line: #232323;
-  --color-red: #ff2d20;
-  --color-redsoft: #ff5f54;
+  --color-accent: #fafafa;
+  --color-accent-dim: #a3a3a3;
 }
 
 html {
@@ -23,7 +23,7 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 45, 32, 0.35);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .grid-bg {
@@ -41,13 +41,20 @@ body {
   pointer-events: none;
 }
 
+.text-fade {
+  background: linear-gradient(180deg, #ffffff 30%, #737373 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .card-hover {
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .card-hover:hover {
-  border-color: rgba(255, 45, 32, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px -14px rgba(255, 45, 32, 0.3);
+  box-shadow: 0 12px 40px -14px rgba(255, 255, 255, 0.12);
 }
 
 @keyframes blink {
