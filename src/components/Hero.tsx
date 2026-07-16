@@ -1,44 +1,79 @@
-import { motion } from 'framer-motion'
-import { DOWNLOADS } from '../data'
-import { fadeUp, stagger } from '../motion'
+import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
+import type { DetectedPlatform } from '../hooks/useDetectedPlatform'
+import { useDetectedPlatform } from '../hooks/useDetectedPlatform'
+import { formatDownloads } from '../hooks/useGitHubDownloads'
 import { BrowserMockup } from './BrowserMockup'
+import { AppleIcon, GitHubIcon } from './icons'
 
-export function Hero() {
+interface HeroProps {
+  downloads: number | null
+}
+
+const SUGGESTED_DOWNLOADS: Record<DetectedPlatform, { href: string; label: string }> = {
+  macos: { href: DOWNLOADS.macArm, label: 'Download for macOS' },
+  windows: { href: DOWNLOADS.windows, label: 'Download for Windows' },
+  linux: { href: DOWNLOADS.linuxAppImage, label: 'Download for Linux' },
+  unknown: { href: '#download', label: 'Choose your download' },
+}
+
+const Arrow = () => <span aria-hidden="true">↗</span>
+
+export function Hero({ downloads }: HeroProps) {
+  const platform = useDetectedPlatform()
+  const suggestedDownload = SUGGESTED_DOWNLOADS[platform]
+
   return (
-    <section className="relative overflow-hidden pb-24 pt-36">
-      <div className="grid-bg absolute inset-0" />
-      <div className="glow-orb left-1/2 top-[-140px] h-[380px] w-[560px] -translate-x-1/2 bg-white/8" />
-
-      <div className="relative mx-auto max-w-6xl px-6 text-center">
-        <motion.div variants={stagger} initial="hidden" animate="show">
-          <motion.h1 variants={fadeUp} className="mx-auto max-w-3xl text-5xl font-extrabold leading-[1.06] tracking-tight md:text-7xl">
-            Catch every email <span className="text-fade">locally.</span>
-          </motion.h1>
-
-          <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-xl text-base text-white/55 md:text-lg">
-            Native Mailer runs a local SMTP server that captures every email your
-            application sends, letting you inspect HTML, headers, attachments, and raw
-            source without configuring external services.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={DOWNLOADS.macArm}
-              className="group flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-white/10 transition hover:bg-white hover:shadow-xl hover:shadow-white/20"
-            >
-              Download for macOS
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-            <a href={DOWNLOADS.windows} className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
-              🖥 Windows
-            </a>
-            <a href={DOWNLOADS.linuxAppImage} className="flex items-center gap-2 rounded-lg border border-white/12 px-5 py-3 text-sm font-medium text-white/70 transition hover:border-white/30 hover:text-white">
-              🐧 Linux
-            </a>
-          </motion.div>
-        </motion.div>
-
+    <section id="top" className="hero">
+      <div className="hero-atmosphere" aria-hidden="true" />
+      <div className="hero-noise" aria-hidden="true" />
+      <div className="hero-copy">
+        <a className="release-pill" href={`${REPO_URL}/releases`}>
+          <span className="release-dot" />
+          v{APP_VERSION} is available
+          <Arrow />
+        </a>
+        <h1>
+          Email testing,
+          <span>without leaving localhost.</span>
+        </h1>
+        <p className="hero-description">
+          A fast, open-source desktop inbox for every email your app sends during development.
+          Private by default. Ready in seconds.
+        </p>
+        <div className="hero-actions">
+          <a className="button button-light" href={suggestedDownload.href}>
+            {platform === 'macos' ? <AppleIcon /> : <span aria-hidden="true">↓</span>}
+            {suggestedDownload.label}
+          </a>
+          <a className="button button-ghost" href={REPO_URL} target="_blank" rel="noreferrer">
+            <GitHubIcon /> View source
+          </a>
+        </div>
+        <div className="platform-note" aria-label="Available platforms">
+          <span>macOS</span><i />
+          <span>Windows</span><i />
+          <span>Linux</span>
+          {downloads === null ? null : (
+            <>
+              <i />
+              <span className="hero-download-count">
+                {formatDownloads(downloads)} {downloads === 1 ? 'download' : 'downloads'}
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="hero-product">
+        <div className="product-aura" aria-hidden="true" />
         <BrowserMockup />
+        <div className="floating-status floating-status-left">
+          <span className="status-icon">↳</span>
+          <span><b>SMTP ready</b><small>localhost:1025</small></span>
+        </div>
+        <div className="floating-status floating-status-right">
+          <span className="live-pulse" />
+          <span><b>Message captured</b><small>just now</small></span>
+        </div>
       </div>
     </section>
   )

@@ -1,47 +1,33 @@
-import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
-import { Reveal } from './Reveal'
+import { APP_VERSION, DOWNLOADS } from '../data'
+import { formatDownloads } from '../hooks/useGitHubDownloads'
 import { AppleIcon } from './icons'
+import { Reveal } from './Reveal'
 
-const secondary =
-  'flex items-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:text-white'
+interface DownloadProps {
+  downloads: number | null
+}
 
-export function Download() {
+export function Download({ downloads }: DownloadProps) {
   return (
-    <section id="download" className="relative overflow-hidden px-6 py-24">
-      <div className="glow-orb left-1/2 top-1/2 h-80 w-[560px] -translate-x-1/2 -translate-y-1/2 bg-white/6" />
-      <Reveal className="relative mx-auto max-w-3xl rounded-2xl border border-line bg-panel/80 p-12 text-center backdrop-blur">
-        <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">Build better emails today.</h2>
-        <p className="mx-auto mt-4 max-w-md text-white/50">
-          Free for individuals, open source, and built for speed. Join thousands of
-          developers using Native Mailer to ship with confidence.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href={DOWNLOADS.macArm}
-            className="flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-white/10 transition hover:bg-white"
-          >
-            <AppleIcon /> macOS (Apple Silicon)
-          </a>
-          <a href={DOWNLOADS.macIntel} className={secondary}>
-            <AppleIcon /> macOS (Intel)
-          </a>
-          <a href={DOWNLOADS.windows} className={secondary}>
-            🖥 Windows
-          </a>
-          <a href={DOWNLOADS.linuxAppImage} className={secondary}>
-            🐧 Linux (AppImage)
-          </a>
-          <a href={DOWNLOADS.linuxDeb} className={secondary}>
-            🐧 Linux (.deb)
-          </a>
+    <section id="download" className="download-section">
+      <div className="download-glow" aria-hidden="true" />
+      <Reveal className="download-inner">
+        <p className="eyebrow">Your local inbox is waiting</p>
+        <h2>Ship email with confidence.</h2>
+        <p>Free, open source, and built to disappear into your workflow.</p>
+        <div className="download-actions">
+          <a className="button button-light" href={DOWNLOADS.macArm}><AppleIcon /> macOS</a>
+          <a className="button button-ghost" href={DOWNLOADS.windows}>Windows <span aria-hidden="true">↓</span></a>
+          <a className="button button-ghost" href={DOWNLOADS.linuxAppImage}>Linux <span aria-hidden="true">↓</span></a>
         </div>
-        <p className="mt-6 font-mono text-[11px] text-white/30">
-          v{APP_VERSION} ·{' '}
-          <a href={`${REPO_URL}/releases`} className="underline decoration-white/20 underline-offset-2 transition hover:text-white/60">
-            all releases
-          </a>{' '}
-          · No registration. No tracking. Pure utility.
-        </p>
+        <div className="download-meta">
+          <small>v{APP_VERSION} · Apple Silicon, Intel, Windows, and Linux</small>
+          {downloads === null ? null : (
+            <small className="download-count" aria-live="polite">
+              {formatDownloads(downloads)} installer {downloads === 1 ? 'download' : 'downloads'} via GitHub
+            </small>
+          )}
+        </div>
       </Reveal>
     </section>
   )

@@ -1,18 +1,43 @@
 import { Reveal } from './Reveal'
 
+const STEPS = [
+  {
+    number: '01',
+    title: 'Launch Native Mailer',
+    body: 'Your local SMTP server starts immediately. No account, API key, or cloud project required.',
+    code: '$ nativemailer\n✓ listening on localhost:1025',
+  },
+  {
+    number: '02',
+    title: 'Point your app at it',
+    body: 'Use the same SMTP settings in Laravel, Rails, Django, Node, Phoenix, or anything else.',
+    code: 'MAIL_HOST=localhost\nMAIL_PORT=1025',
+  },
+  {
+    number: '03',
+    title: 'Send. Inspect. Repeat.',
+    body: 'Every message appears instantly with the detail you need to debug content and delivery.',
+    code: 'POST /welcome-email\n202 Accepted  ·  18ms',
+  },
+] as const
+
 export function Workflow() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-      <Reveal>
-        <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Designed for the local workflow.</h2>
-        <p className="mt-5 leading-relaxed text-white/50">
-          We believe that development environments should be sandboxed, fast, and private.
-          Native Mailer eliminates the friction of setting up sandbox accounts or dealing
-          with rate limits on third-party API services. It acts as a black hole for your
-          app's outgoing emails, ensuring zero leaks to real-world addresses while
-          providing professional-grade inspection tools for high-precision debugging.
-        </p>
+    <section id="workflow" className="section workflow-section">
+      <Reveal className="workflow-heading">
+        <p className="eyebrow">Three steps. No ceremony.</p>
+        <h2>From setup to inbox<br />in under a minute.</h2>
       </Reveal>
+      <div className="workflow-grid">
+        {STEPS.map((step) => (
+          <Reveal className="workflow-card" key={step.number}>
+            <span className="workflow-number">{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+            <pre><code>{step.code}</code></pre>
+          </Reveal>
+        ))}
+      </div>
     </section>
   )
 }
