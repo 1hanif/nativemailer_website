@@ -4,6 +4,7 @@ import { Reveal } from './components/Reveal'
 import { AttachmentsMockup, HeadersMockup, InboxMockupSmall } from './components/Mockups'
 import { AppleIcon, GitHubIcon } from './components/icons'
 import { Logo } from './components/Logo'
+import { formatDownloads, useGitHubDownloads } from './hooks/useGitHubDownloads'
 
 const Arrow = () => <span aria-hidden="true">↗</span>
 
@@ -59,7 +60,7 @@ function Nav() {
   )
 }
 
-function Hero() {
+function Hero({ downloads }: { downloads: number | null }) {
   return (
     <section id="top" className="hero">
       <div className="hero-atmosphere" aria-hidden="true" />
@@ -90,6 +91,14 @@ function Hero() {
           <span>macOS</span><i />
           <span>Windows</span><i />
           <span>Linux</span>
+          {downloads !== null && (
+            <>
+              <i />
+              <span className="hero-download-count">
+                {formatDownloads(downloads)} {downloads === 1 ? 'download' : 'downloads'}
+              </span>
+            </>
+          )}
         </div>
       </div>
       <div className="hero-product">
@@ -197,7 +206,7 @@ function StackBand() {
   )
 }
 
-function Download() {
+function Download({ downloads }: { downloads: number | null }) {
   return (
     <section id="download" className="download-section">
       <div className="download-glow" aria-hidden="true" />
@@ -210,7 +219,14 @@ function Download() {
           <a className="button button-ghost" href={DOWNLOADS.windows}>Windows <span aria-hidden="true">↓</span></a>
           <a className="button button-ghost" href={DOWNLOADS.linuxAppImage}>Linux <span aria-hidden="true">↓</span></a>
         </div>
-        <small>v{APP_VERSION} · Apple Silicon, Intel, Windows, and Linux</small>
+        <div className="download-meta">
+          <small>v{APP_VERSION} · Apple Silicon, Intel, Windows, and Linux</small>
+          {downloads !== null && (
+            <small className="download-count" aria-live="polite">
+              {formatDownloads(downloads)} installer {downloads === 1 ? 'download' : 'downloads'} via GitHub
+            </small>
+          )}
+        </div>
       </Reveal>
     </section>
   )
@@ -243,16 +259,18 @@ function Footer() {
 }
 
 export default function App() {
+  const downloads = useGitHubDownloads()
+
   return (
     <div className="site-shell">
       <Nav />
       <main>
-        <Hero />
+        <Hero downloads={downloads} />
         <Highlights />
         <Features />
         <Workflow />
         <StackBand />
-        <Download />
+        <Download downloads={downloads} />
       </main>
       <Footer />
     </div>

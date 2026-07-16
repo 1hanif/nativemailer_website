@@ -173,6 +173,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero-actions { display: flex; justify-content: center; gap: 10px; margin-top: 31px; }
 .platform-note { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 18px; font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.38); }
 .platform-note i { width: 2px; height: 2px; border-radius: 50%; background: rgba(255,255,255,.36); }
+.platform-note .hero-download-count { color: rgba(255,255,255,.64); }
 
 .hero-product { position: relative; z-index: 2; width: min(100%, 1120px); margin-top: 38px; }
 .product-aura { position: absolute; inset: 10% 12% -8%; z-index: -1; border-radius: 50%; background: rgba(87,72,177,.38); filter: blur(85px); }
@@ -298,7 +299,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .download-inner { position: relative; text-align: center; }
 .download-inner > p:not(.eyebrow) { margin: 24px 0 0; color: rgba(255,255,255,.5); }
 .download-actions { display: flex; justify-content: center; gap: 10px; margin-top: 34px; }
-.download-inner small { display: block; margin-top: 20px; font-family: var(--font-mono); font-size: 8px; letter-spacing: .05em; color: rgba(255,255,255,.3); }
+.download-meta { display: flex; justify-content: center; align-items: center; gap: 9px; margin-top: 20px; }
+.download-inner small { display: block; font-family: var(--font-mono); font-size: 8px; letter-spacing: .05em; color: rgba(255,255,255,.3); }
+.download-inner .download-count { display: inline-flex; align-items: center; gap: 9px; color: rgba(255,255,255,.48); }
+.download-count::before { content: ''; width: 2px; height: 2px; border-radius: 50%; background: rgba(255,255,255,.36); }
 
 .footer { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 50px; width: min(100% - 48px, 1180px); margin: 0 auto; padding: 76px 0 28px; }
 .footer-brand p { margin: 12px 0 0; color: rgba(255,255,255,.34); font-size: 12px; }
@@ -398,6 +402,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .download-section { min-height: 580px; padding: 110px 16px; }
   .download-actions { flex-direction: column; align-items: center; }
   .download-actions .button { width: min(100%, 250px); }
+  .download-meta { flex-direction: column; gap: 7px; }
+  .download-count::before { display: none; }
   .footer { grid-template-columns: 1fr; width: calc(100% - 32px); padding-top: 60px; }
   .footer-links { gap: 32px; }
 }
