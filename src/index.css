@@ -293,7 +293,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .stack-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 42px; margin-top: 28px; }
 .stack-list span { font-family: var(--font-mono); font-size: 13px; color: rgba(255,255,255,.5); }
 
-.download-section { position: relative; min-height: 640px; padding: 150px 24px; display: grid; place-items: center; overflow: hidden; background: #081225; }
+.download-section { position: relative; min-height: 760px; padding: 130px 24px; display: grid; place-items: center; overflow: hidden; background: #081225; }
 .download-section::before { content: ''; position: absolute; inset: 0; opacity: .27; background-image: radial-gradient(circle, rgba(255,255,255,.7) 0 1px, transparent 1.3px); background-size: 74px 74px; }
 .download-glow { position: absolute; width: 760px; height: 520px; border-radius: 50%; background: radial-gradient(ellipse, rgba(103,75,207,.34), rgba(24,69,120,.18) 46%, transparent 72%); filter: blur(16px); }
 .download-inner { position: relative; text-align: center; }
@@ -303,6 +303,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .download-inner small { display: block; font-family: var(--font-mono); font-size: 8px; letter-spacing: .05em; color: rgba(255,255,255,.3); }
 .download-inner .download-count { display: inline-flex; align-items: center; gap: 9px; color: rgba(255,255,255,.48); }
 .download-count::before { content: ''; width: 2px; height: 2px; border-radius: 50%; background: rgba(255,255,255,.36); }
+.macos-install-note { width: min(100%, 660px); margin: 42px auto 0; padding: 22px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(5,9,18,.72); text-align: left; backdrop-filter: blur(16px); }
+.macos-install-copy { display: flex; align-items: flex-start; gap: 13px; }
+.macos-install-icon { display: grid; flex: 0 0 32px; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(255,255,255,.11); border-radius: 7px; background: rgba(255,255,255,.05); color: rgba(255,255,255,.8); }
+.macos-install-copy h3 { margin: 1px 0 5px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0; }
+.macos-install-copy p, .macos-install-footnote { margin: 0; color: rgba(255,255,255,.46); font-size: 11px; line-height: 1.6; }
+.command-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 46px; margin-top: 17px; padding: 7px 8px 7px 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; background: #05070b; }
+.command-copy code { min-width: 0; overflow-x: auto; font-family: var(--font-mono); font-size: 11px; white-space: nowrap; color: rgba(255,255,255,.78); scrollbar-width: thin; }
+.command-copy button { min-width: 58px; min-height: 30px; padding: 0 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; background: rgba(255,255,255,.06); color: rgba(255,255,255,.72); font: 600 10px var(--font-mono); cursor: pointer; transition: color .2s ease, border-color .2s ease, background-color .2s ease; }
+.command-copy button:hover { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.1); color: white; }
+.macos-install-footnote { margin-top: 13px; font-size: 10px; }
+.macos-install-footnote a { color: rgba(255,255,255,.75); text-decoration: underline; text-decoration-color: rgba(255,255,255,.28); text-underline-offset: 3px; }
+.macos-install-footnote a:hover { color: white; text-decoration-color: rgba(255,255,255,.7); }
 
 .footer { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 50px; width: min(100% - 48px, 1180px); margin: 0 auto; padding: 76px 0 28px; }
 .footer-brand p { margin: 12px 0 0; color: rgba(255,255,255,.34); font-size: 12px; }
@@ -399,11 +411,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .workflow-card h3 { margin-top: 50px; }
   .workflow-card p { min-height: auto; }
   .stack-list { gap: 22px 28px; }
-  .download-section { min-height: 580px; padding: 110px 16px; }
+  .download-section { min-height: 720px; padding: 100px 16px; }
   .download-actions { flex-direction: column; align-items: center; }
   .download-actions .button { width: min(100%, 250px); }
   .download-meta { flex-direction: column; gap: 7px; }
   .download-count::before { display: none; }
+  .macos-install-note { margin-top: 34px; padding: 18px; }
+  .command-copy { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+  .command-copy button { width: 100%; }
   .footer { grid-template-columns: 1fr; width: calc(100% - 32px); padding-top: 60px; }
   .footer-links { gap: 32px; }
 }
