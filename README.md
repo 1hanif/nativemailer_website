@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Run `npm run build` before publishing. Release download URLs and the displayed version live in `src/data.ts` and must match the assets attached to the corresponding GitHub Release.
+Run `npm run build` before publishing. The site reads the latest published GitHub Release at runtime and links each platform to the newest release that ships its installer, so publishing a release is enough — no site change needed. `FALLBACK_RELEASE` in `src/data.ts` is only used before the API responds or if it's unreachable. Installer filenames must keep matching the patterns in `src/hooks/useGitHubReleases.ts` (see below).
 
 ## Release artifacts
 

@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
-import { formatDownloads } from '../hooks/useGitHubDownloads'
+import { REPO_URL } from '../data'
+import type { LatestRelease } from '../data'
+import { formatDownloads } from '../hooks/useGitHubReleases'
 import { Reveal } from './Reveal'
 
 interface DownloadProps {
   downloads: number | null
+  release: LatestRelease
 }
 
 const MACOS_RECOVERY_COMMAND = 'xattr -cr /Applications/NativeMailer.app'
 
-export function Download({ downloads }: DownloadProps) {
+export function Download({ downloads, release }: DownloadProps) {
   const [copied, setCopied] = useState(false)
 
   async function copyRecoveryCommand() {
@@ -22,14 +24,14 @@ export function Download({ downloads }: DownloadProps) {
     <section id="download" className="section container">
       <Reveal className="download">
         <h2>Download Native Mailer</h2>
-        <p className="lead">Free and open source. Version {APP_VERSION}.</p>
+        <p className="lead">Free and open source. Version {release.version}.</p>
         <div className="actions">
-          <a className="button button-primary" href={DOWNLOADS.macArm}>macOS</a>
-          <a className="button button-secondary" href={DOWNLOADS.windows}>Windows</a>
-          <a className="button button-secondary" href={DOWNLOADS.linuxAppImage}>Linux</a>
+          <a className="button button-primary" href={release.links.macArm}>macOS</a>
+          <a className="button button-secondary" href={release.links.windows}>Windows</a>
+          <a className="button button-secondary" href={release.links.linuxAppImage}>Linux</a>
         </div>
         <p className="meta">
-          <a href={DOWNLOADS.macIntel}>Intel Mac</a> · <a href={DOWNLOADS.linuxDebArm64}>.deb (ARM64)</a> ·{' '}
+          <a href={release.links.macIntel}>Intel Mac</a> · <a href={release.links.linuxDebArm64}>.deb (ARM64)</a> ·{' '}
           <a href={`${REPO_URL}/releases`}>All releases</a>
           {downloads === null ? null : (
             <span aria-live="polite">

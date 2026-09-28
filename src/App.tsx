@@ -4,19 +4,19 @@ import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
 import { Workflow } from './components/Workflow'
-import { useGitHubDownloads } from './hooks/useGitHubDownloads'
+import { useGitHubReleases } from './hooks/useGitHubReleases'
 
 export default function App() {
-  const downloads = useGitHubDownloads()
+  const { downloads, latest } = useGitHubReleases()
 
   return (
     <>
       <Nav />
       <main>
-        <Hero downloads={downloads} />
+        <Hero downloads={downloads} release={latest} />
         <Features />
         <Workflow />
-        <Download downloads={downloads} />
+        <Download downloads={downloads} release={latest} />
       </main>
       <Footer />
     </>

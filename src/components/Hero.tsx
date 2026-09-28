@@ -1,28 +1,34 @@
-import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
+import { REPO_URL } from '../data'
+import type { LatestRelease } from '../data'
 import type { DetectedPlatform } from '../hooks/useDetectedPlatform'
 import { useDetectedPlatform } from '../hooks/useDetectedPlatform'
-import { formatDownloads } from '../hooks/useGitHubDownloads'
+import { formatDownloads } from '../hooks/useGitHubReleases'
 import { BrowserMockup } from './BrowserMockup'
 
 interface HeroProps {
   downloads: number | null
+  release: LatestRelease
 }
 
-const SUGGESTED_DOWNLOADS: Record<DetectedPlatform, { href: string; label: string }> = {
-  macos: { href: DOWNLOADS.macArm, label: 'Download for macOS' },
-  windows: { href: DOWNLOADS.windows, label: 'Download for Windows' },
-  linux: { href: DOWNLOADS.linuxAppImage, label: 'Download for Linux' },
-  unknown: { href: '#download', label: 'Download' },
+function suggestedDownloads(
+  links: LatestRelease['links'],
+): Record<DetectedPlatform, { href: string; label: string }> {
+  return {
+    macos: { href: links.macArm, label: 'Download for macOS' },
+    windows: { href: links.windows, label: 'Download for Windows' },
+    linux: { href: links.linuxAppImage, label: 'Download for Linux' },
+    unknown: { href: '#download', label: 'Download' },
+  }
 }
 
-export function Hero({ downloads }: HeroProps) {
+export function Hero({ downloads, release }: HeroProps) {
   const platform = useDetectedPlatform()
-  const suggestedDownload = SUGGESTED_DOWNLOADS[platform]
+  const suggestedDownload = suggestedDownloads(release.links)[platform]
 
   return (
     <section id="top" className="hero container">
-      <a className="release-link" href={`${REPO_URL}/releases/tag/v${APP_VERSION}`}>
-        v{APP_VERSION} <span aria-hidden="true">→</span>
+      <a className="release-link" href={release.url}>
+        v{release.version} <span aria-hidden="true">→</span>
       </a>
       <h1>Email testing, without leaving localhost.</h1>
       <p className="lead">
