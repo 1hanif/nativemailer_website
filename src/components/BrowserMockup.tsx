@@ -139,12 +139,11 @@ export function BrowserMockup() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: .9, delay: .5, ease: 'easeOut' }}
+      transition={{ duration: .6, delay: .2, ease: 'easeOut' }}
       className="app-mockup"
     >
-      <div className="app-window-glow" />
       <div className="app-window">
         <div className="app-titlebar">
           <div className="traffic-lights"><span /><span /><span /></div>

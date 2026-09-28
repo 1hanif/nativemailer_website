@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { APP_VERSION, DOWNLOADS } from '../data'
+import { APP_VERSION, DOWNLOADS, REPO_URL } from '../data'
 import { formatDownloads } from '../hooks/useGitHubDownloads'
-import { AppleIcon } from './icons'
 import { Reveal } from './Reveal'
 
 interface DownloadProps {
@@ -20,43 +19,36 @@ export function Download({ downloads }: DownloadProps) {
   }
 
   return (
-    <section id="download" className="download-section">
-      <div className="download-glow" aria-hidden="true" />
-      <Reveal className="download-inner">
-        <p className="eyebrow">Your local inbox is waiting</p>
-        <h2>Ship email with confidence.</h2>
-        <p>Free, open source, and built to disappear into your workflow.</p>
-        <div className="download-actions">
-          <a className="button button-light" href={DOWNLOADS.macArm}><AppleIcon /> macOS</a>
-          <a className="button button-ghost" href={DOWNLOADS.windows}>Windows <span aria-hidden="true">↓</span></a>
-          <a className="button button-ghost" href={DOWNLOADS.linuxAppImage}>Linux <span aria-hidden="true">↓</span></a>
+    <section id="download" className="section container">
+      <Reveal className="download">
+        <h2>Download Native Mailer</h2>
+        <p className="lead">Free and open source. Version {APP_VERSION}.</p>
+        <div className="actions">
+          <a className="button button-primary" href={DOWNLOADS.macArm}>macOS</a>
+          <a className="button button-secondary" href={DOWNLOADS.windows}>Windows</a>
+          <a className="button button-secondary" href={DOWNLOADS.linuxAppImage}>Linux</a>
         </div>
-        <div className="download-meta">
-          <small>v{APP_VERSION} · Apple Silicon, Intel, Windows, and Linux</small>
+        <p className="meta">
+          <a href={DOWNLOADS.macIntel}>Intel Mac</a> · <a href={DOWNLOADS.linuxDebArm64}>.deb (ARM64)</a> ·{' '}
+          <a href={`${REPO_URL}/releases`}>All releases</a>
           {downloads === null ? null : (
-            <small className="download-count" aria-live="polite">
-              {formatDownloads(downloads)} installer {downloads === 1 ? 'download' : 'downloads'} via GitHub
-            </small>
+            <span aria-live="polite">
+              {' '}· {formatDownloads(downloads)} installer {downloads === 1 ? 'download' : 'downloads'}
+            </span>
           )}
-        </div>
-        <aside className="macos-install-note" aria-labelledby="macos-install-title">
-          <div className="macos-install-copy">
-            <span className="macos-install-icon" aria-hidden="true"><AppleIcon /></span>
-            <div>
-              <h3 id="macos-install-title">macOS says the app is damaged?</h3>
-              <p>Move NativeMailer to Applications, then run this once in Terminal.</p>
-            </div>
-          </div>
-          <div className="command-copy">
+        </p>
+
+        <aside className="note" aria-labelledby="macos-install-title">
+          <h3 id="macos-install-title">macOS says the app is damaged?</h3>
+          <p>Move NativeMailer to Applications, then run this once in Terminal:</p>
+          <div className="command">
             <code>{MACOS_RECOVERY_COMMAND}</code>
             <button type="button" onClick={copyRecoveryCommand} aria-label="Copy Terminal command">
               {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
-          <p className="macos-install-footnote">
-            NativeMailer is currently distributed without Apple notarization. This command removes
-            macOS's download quarantine attribute. Using an Intel Mac?{' '}
-            <a href={DOWNLOADS.macIntel}>Download the x64 build.</a>
+          <p className="note-footnote">
+            NativeMailer isn't notarized by Apple yet. This removes macOS's download quarantine attribute.
           </p>
         </aside>
       </Reveal>

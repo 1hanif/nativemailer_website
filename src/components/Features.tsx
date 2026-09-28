@@ -1,43 +1,29 @@
-import { AttachmentsMockup, HeadersMockup, InboxMockupSmall } from './Mockups'
 import { Reveal } from './Reveal'
+
+const FEATURES = [
+  ['Local SMTP', 'A private inbox on localhost:1025. Nothing leaves your machine.'],
+  ['Full inspection', 'Rendered HTML, plain text, headers, and raw MIME source.'],
+  ['Attachments', 'Open generated invoices, images, and documents before anyone else does.'],
+  ['Search & filter', 'Find any captured message in seconds.'],
+  ['Zero accounts', 'No sign-up, API key, or cloud project. Open it and send.'],
+  ['Open source', 'Free, and built in the open on GitHub.'],
+] as const
 
 export function Features() {
   return (
-    <section id="features" className="section features-section">
-      <Reveal className="section-heading">
-        <p className="eyebrow">Built for the feedback loop</p>
-        <h2>Everything stays<br />on your machine.</h2>
-        <p>Inspect the whole message, not a watered-down preview. Native Mailer keeps the local email workflow quick, safe, and focused.</p>
+    <section id="features" className="section container">
+      <Reveal className="section-head">
+        <p className="label">Features</p>
+        <h2>Everything stays on your machine.</h2>
       </Reveal>
-
-      <div className="feature-grid">
-        <Reveal className="feature-card feature-card-wide">
-          <div className="feature-copy">
-            <span className="feature-index">01 / INBOX</span>
-            <h3>Every message.<br />Right when it happens.</h3>
-            <p>Search, filter, and inspect captured email without waiting on a remote sandbox or leaving your development environment.</p>
+      <Reveal className="feature-list">
+        {FEATURES.map(([title, body]) => (
+          <div key={title}>
+            <h3>{title}</h3>
+            <p>{body}</p>
           </div>
-          <div className="feature-visual inbox-visual"><InboxMockupSmall /></div>
-        </Reveal>
-
-        <Reveal className="feature-card">
-          <div className="feature-copy">
-            <span className="feature-index">02 / SOURCE</span>
-            <h3>Headers without the headache.</h3>
-            <p>Read transport data, custom headers, return paths, and raw MIME in a view made for debugging.</p>
-          </div>
-          <div className="feature-visual"><HeadersMockup /></div>
-        </Reveal>
-
-        <Reveal className="feature-card">
-          <div className="feature-copy">
-            <span className="feature-index">03 / FILES</span>
-            <h3>Attachments, accounted for.</h3>
-            <p>Verify generated invoices, images, and documents before a real recipient ever sees them.</p>
-          </div>
-          <div className="feature-visual"><AttachmentsMockup /></div>
-        </Reveal>
-      </div>
+        ))}
+      </Reveal>
     </section>
   )
 }
