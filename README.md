@@ -20,7 +20,7 @@ NativeMailer-<version>-arm64.dmg
 NativeMailer-<version>-x64.dmg
 NativeMailer-<version>-setup.exe
 NativeMailer-<version>.AppImage
-nativemailer_<version>_amd64.deb
+nativemailer_<version>_arm64.deb
 ```
 
 Build the macOS application from the NativePHP app repository:

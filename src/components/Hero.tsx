@@ -27,7 +27,7 @@ export function Hero({ downloads }: HeroProps) {
       <div className="hero-atmosphere" aria-hidden="true" />
       <div className="hero-noise" aria-hidden="true" />
       <div className="hero-copy">
-        <a className="release-pill" href={`${REPO_URL}/releases`}>
+        <a className="release-pill" href={`${REPO_URL}/releases/tag/v${APP_VERSION}`}>
           <span className="release-dot" />
           v{APP_VERSION} is available
           <Arrow />
