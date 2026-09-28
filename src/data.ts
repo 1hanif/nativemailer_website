@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 export const REPO_URL = 'https://github.com/1hanif/nativemailer'
 export const REPO_API = 'https://api.github.com/repos/1hanif/nativemailer'
 
-export const APP_VERSION = '1.0.0'
+export const APP_VERSION = '2.0.0'
 const DL = `${REPO_URL}/releases/download/v${APP_VERSION}`
 
 export const DOWNLOADS = {
@@ -11,7 +11,7 @@ export const DOWNLOADS = {
   macIntel: `${DL}/NativeMailer-${APP_VERSION}-x64.dmg`,
   windows: `${DL}/NativeMailer-${APP_VERSION}-setup.exe`,
   linuxAppImage: `${DL}/NativeMailer-${APP_VERSION}.AppImage`,
-  linuxDeb: `${DL}/nativemailer_${APP_VERSION}_amd64.deb`,
+  linuxDebArm64: `${DL}/nativemailer_${APP_VERSION}_arm64.deb`,
 } as const
 
 export interface Email {
